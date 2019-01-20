@@ -13,8 +13,8 @@ import random
 class PositionBasedModel:
 
     def __init__(self):
-        self.gamma = defaultdict(Decimal)
-        self.alpha = defaultdict(lambda: defaultdict(Decimal))
+        self.gamma = defaultdict(float)
+        self.alpha = defaultdict(lambda: defaultdict(float))
 
     def train(self, training_file = "YandexRelPredChallenge.txt", iterations=10):
 
@@ -26,11 +26,11 @@ class PositionBasedModel:
         for i in range(iterations):
 
             # Initialise sums and counts
-            gamma_count = defaultdict(Decimal)
-            alpha_count = defaultdict(lambda: defaultdict(Decimal))
+            gamma_count = defaultdict(float)
+            alpha_count = defaultdict(lambda: defaultdict(lambda: 2))
 
-            gamma_sum = defaultdict(Decimal)
-            alpha_sum = defaultdict(lambda: defaultdict(Decimal))
+            gamma_sum = defaultdict(float)
+            alpha_sum = defaultdict(lambda: defaultdict(lambda: 1))
 
             # Iterate sessions
             grouped = df.groupby("SessionID")
